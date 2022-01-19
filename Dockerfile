@@ -32,6 +32,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* \
     && git clone https://github.com/crosstool-ng/crosstool-ng.git \
     && cd crosstool-ng \
+    && git rev-parse --short HEAD > /var/ct-ng_git-cid \
     && ./bootstrap \
     && ./configure --prefix=/usr \
     && make -j $(nproc) \
