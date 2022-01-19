@@ -60,5 +60,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.CTNG_CID_TAG }}
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.CTNG_CID_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
