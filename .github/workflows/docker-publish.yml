@@ -62,3 +62,11 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.CTNG_CID_TAG }}
           labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
+          repository: promisc/toolchain-armhf
+          event-type: dep-change
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
